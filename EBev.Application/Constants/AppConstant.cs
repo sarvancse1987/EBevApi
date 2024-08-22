@@ -7,8 +7,8 @@
         public static string SWAGGER_SUPPORT_DOC = "EbDev API Documentation";
         public static string SWAGGER_SUPPORT_API = "EbDev API";
         public static string SWAGGER_SUPPORT_SERVICE = "EbDev Service";
-        public static string APP_Policy = "EbDevPolicy";
-        public static string APP_CONNECTIONSTRING = "EbDevConnectionString";
+        public static string APP_Policy = "EBevPolicy";
+        public static string APP_CONNECTIONSTRING = "EBevConnectionString";
         public static string INVALID_DATA = "Input data is invalid";
         public static string ERROR_METHOD_NAME = "Error has occured in ebDev service -";
 

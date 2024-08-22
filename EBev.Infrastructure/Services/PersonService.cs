@@ -21,10 +21,14 @@
             return request;
         }
 
-        public async Task<bool> Update(PersonVm request, CancellationToken ct = default)
+        public async Task<bool> Update(int blogId, PersonVm request, CancellationToken ct = default)
         {
-            request.EditedBy = _currentUserService.MemberId;
-            Person response = await _personRepository.Update(_mapper.Map<Person>(request), ct);
+            Person person = await _personRepository.Get(x => x.Id == blogId);
+            person.ShortDescription = request.ShortDescription;
+            person.Description = request.Description;
+            person.ImageUrl = request.ImageUrl;
+            person.EditedBy = _currentUserService.MemberId;
+            Person response = await _personRepository.Update(person, ct);
             return true;
         }
 

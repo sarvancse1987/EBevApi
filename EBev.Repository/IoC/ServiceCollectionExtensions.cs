@@ -5,8 +5,8 @@
         public static IServiceCollection AddRepositoryServices(this IServiceCollection services)
         {
             services
-                .AddSingleton<IBlogRepository, BlogRepository>()
-                .AddSingleton<IPersonRepository, PersonRepository>();
+                .AddTransient<IBlogRepository, BlogRepository>()
+                .AddTransient<IPersonRepository, PersonRepository>();
 
             return services;
         }

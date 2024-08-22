@@ -14,3 +14,4 @@ global using Microsoft.OpenApi.Models;
 global using System.Net;
 global using System.Reflection;
 global using System.Text;
+global using Microsoft.AspNetCore.Cors;

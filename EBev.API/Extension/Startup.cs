@@ -5,6 +5,8 @@
         public static IServiceCollection ConfigureServices(this IServiceCollection services, WebApplicationBuilder configuration)
         {
             services.AddDbContext<EBevDbContext>(options => options.UseSqlServer(configuration.Configuration.GetConnectionString(AppConstant.APP_CONNECTIONSTRING)));
+            services.AddControllers();
+            services.AddEndpointsApiExplorer();
 
             services
                 .AddOptions()
@@ -17,13 +19,17 @@
                            .AllowAnyMethod()
                            .AllowAnyHeader();
                 }))
-                .AddSingleton<IHttpContextAccessor, HttpContextAccessor>()
-                .AddSingleton<IContextHelper, ContextHelper>()
-                .AddScoped<IUnitOfWorkWrite, UnitOfWorkWrite<EBevDbContext>>()
-                .AddMapper()
                 .AddConfigurationOptions()
                 .AddInfrastructureServices()
                 .AddRepositoryServices()
+                .AddSingleton<IConfiguration>(configuration.Configuration)
+                .AddSingleton<IHttpContextAccessor, HttpContextAccessor>()
+                .AddSingleton<IContextHelper, ContextHelper>()
+                .AddScoped<IUnitOfWorkRead, UnitOfWorkRead<EBevDbContext>>()
+                .AddScoped<IUnitOfWorkWrite, UnitOfWorkWrite<EBevDbContext>>()
+                .AddMapper()
+                .AddLogging()
+                .AddTransient<UnhandledExceptionHandlerMiddleware>()
                 .ConfigureAuthentication(configuration.Configuration);
 
             return services;
@@ -33,11 +39,13 @@
         public static void Configure(this WebApplication app, WebApplicationBuilder configuration)
         {
             SeedData(app, configuration.Configuration);
-            app.UseMiddleware<UnhandledExceptionHandlerMiddleware>()
+            app
             .UseRouting()
             .UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader())
             .UseAuthentication()
             .UseAuthorization()
+            .UseHttpLogging()
+            .UseMiddleware<UnhandledExceptionHandlerMiddleware>()
             .UseSwagger()
             .UseSwaggerUI(c =>
             {
@@ -180,7 +188,7 @@
                 bool isCreated = context.Database.EnsureCreated();
                 if (isCreated && !context.Person.Any())
                 {
-                    Seeds(context, configuration);
+                    //Seeds(context, configuration);
 
                     Person person = new Person()
                     {

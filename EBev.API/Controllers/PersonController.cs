@@ -1,18 +1,18 @@
 ﻿namespace EBev.API.Controllers
 {
-    public class BlogController : BaseController
+    public class PersonController : BaseController
     {
-        private readonly IBlogService _blogService;
-        private readonly ILogger<BlogController> _logger;
-        public BlogController(IBlogService blogService
-            , ILogger<BlogController> logger)
+        private readonly IPersonService _personService;
+        private readonly ILogger<PersonController> _logger;
+        public PersonController(IPersonService personService
+            , ILogger<PersonController> logger)
         {
-            _blogService = blogService;
+            _personService = personService;
             _logger = logger;
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> Add(BlogVm request)
+        public async Task<IActionResult> Add(PersonVm request)
         {
             try
             {
@@ -20,7 +20,7 @@
                 {
                     StatusCode = (int)HttpStatusCode.OK,
                     Success = true,
-                    Result = await _blogService.Add(request)
+                    Result = await _personService.Add(request)
                 });
             }
             catch (Exception ex)
@@ -35,8 +35,8 @@
             }
         }
 
-        [HttpPut("{blogId}/update")]
-        public async Task<IActionResult> Update([FromRoute] int blogId, BlogVm request)
+        [HttpPut("{personId}/update")]
+        public async Task<IActionResult> Update([FromRoute] int personId, PersonVm request)
         {
             try
             {
@@ -44,7 +44,7 @@
                 {
                     StatusCode = (int)HttpStatusCode.OK,
                     Success = true,
-                    Result = await _blogService.Update(blogId, request)
+                    Result = await _personService.Update(personId, request)
                 });
             }
             catch (Exception ex)
@@ -59,8 +59,8 @@
             }
         }
 
-        [HttpGet("{blogId}")]
-        public async Task<IActionResult> Get([FromRoute] int blogId)
+        [HttpGet("{personId}")]
+        public async Task<IActionResult> Get([FromRoute] int personId)
         {
             try
             {
@@ -68,17 +68,17 @@
                 {
                     StatusCode = (int)HttpStatusCode.OK,
                     Success = true,
-                    Result = await _blogService.Get(blogId)
+                    Result = await _personService.Get(personId)
                 });
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Exception while get Blog");
+                _logger.LogError(ex, "Exception while get person");
                 return StatusCode((int)HttpStatusCode.InternalServerError, new ApiResponse()
                 {
                     Success = false,
                     StatusCode = (int)HttpStatusCode.InternalServerError,
-                    Error = new ApiErrorResponse($"Exception while get Blog details. Message: {ex.Message}")
+                    Error = new ApiErrorResponse($"Exception while get person details. Message: {ex.Message}")
                 });
             }
         }
@@ -92,17 +92,17 @@
                 {
                     StatusCode = (int)HttpStatusCode.OK,
                     Success = true,
-                    Result = await _blogService.GetAll()
+                    Result = await _personService.GetAll()
                 });
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Exception while get all Blog");
+                _logger.LogError(ex, "Exception while get all person");
                 return StatusCode((int)HttpStatusCode.InternalServerError, new ApiResponse()
                 {
                     Success = false,
                     StatusCode = (int)HttpStatusCode.InternalServerError,
-                    Error = new ApiErrorResponse($"Exception while get all Blog details. Message: {ex.Message}")
+                    Error = new ApiErrorResponse($"Exception while get all person details. Message: {ex.Message}")
                 });
             }
         }

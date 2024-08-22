@@ -5,9 +5,9 @@
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
         {
             services
-                .AddSingleton<IBlogService, BlogService>()
-                .AddSingleton<IPersonService, PersonService>()
-                .AddSingleton<ICurrentUserService, CurrentUserService>();
+                .AddTransient<IBlogService, BlogService>()
+                .AddTransient<IPersonService, PersonService>()
+                .AddTransient<ICurrentUserService, CurrentUserService>();
 
             return services;
         }
