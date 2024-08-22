@@ -6,5 +6,6 @@
         Task<bool> Update(int blogId, BlogVm request, CancellationToken ct = default);
         Task<BlogVm> Get(int blogId);
         Task<IEnumerable<BlogVm>> GetAll();
+        Task<bool> Delete(int blogId);
     }
 }

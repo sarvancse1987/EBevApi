@@ -6,5 +6,6 @@
         Task<Blog> Update(Blog request, CancellationToken ct = default);
         Task<Blog> Get(Expression<Func<Blog, bool>>? predicate = null);
         Task<IEnumerable<Blog>> GetAll(Expression<Func<Blog, bool>>? predicate = null);
+        Task<bool> Delete(Blog request, CancellationToken ct = default(CancellationToken));
     }
 }

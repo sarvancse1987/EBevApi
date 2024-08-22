@@ -16,7 +16,9 @@
         public async Task<BlogVm> Add(BlogVm request, CancellationToken ct = default)
         {
             request.IsActive = true;
-            request.CreatedBy = _currentUserService.MemberId;
+            request.PersonId = 1;
+            request.CreatedBy = 999;
+            request.CreatedOn = DateTime.Now;
             Blog response = await _blogRepository.Add(_mapper.Map<Blog>(request), ct);
             return request;
         }
@@ -38,6 +40,13 @@
         {
             IEnumerable<Blog> response = await _blogRepository.GetAll(x => x.IsActive);
             return _mapper.Map<List<BlogVm>>(response);
+        }
+
+        public async Task<bool> Delete(int blogId)
+        {
+            Blog blog = await _blogRepository.Get(x => x.Id == blogId);
+            var response = await _blogRepository.Delete(blog);
+            return response;
         }
     }
 }

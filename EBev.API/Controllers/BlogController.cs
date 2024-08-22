@@ -106,5 +106,29 @@
                 });
             }
         }
+
+        [HttpDelete("delete/{blogId}")]
+        public async Task<IActionResult> Delete([FromRoute] int blogId)
+        {
+            try
+            {
+                return Ok(new ApiResponse()
+                {
+                    StatusCode = (int)HttpStatusCode.OK,
+                    Success = true,
+                    Result = await _blogService.Delete(blogId)
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Exception while delete Blog");
+                return StatusCode((int)HttpStatusCode.InternalServerError, new ApiResponse()
+                {
+                    Success = false,
+                    StatusCode = (int)HttpStatusCode.InternalServerError,
+                    Error = new ApiErrorResponse($"Exception while delete Blog details. Message: {ex.Message}")
+                });
+            }
+        }
     }
 }

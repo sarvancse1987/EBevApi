@@ -33,5 +33,12 @@
         {
             return _unitOfWork.GetRepository<Blog>().GetAll(skipBaseProperties: true, predicate: predicate);
         }
+
+        public async Task<bool> Delete(Blog request, CancellationToken ct = default(CancellationToken))
+        {
+            _unitOfWork.GetRepository<Blog>().Delete(request);
+            await _unitOfWork.SaveChangesAsync();
+            return true;
+        }
     }
 }

@@ -6,7 +6,7 @@
         public string Title { get; set; } = null!;
         public string Description { get; set; } = null!;
         public string Content { get; set; } = null!;
-
-        public Person Person { get; set; }
+        public int PersonId { get; set; }
+        public Person? Person { get; set; }
     }
 }
