@@ -1,0 +1,16 @@
+﻿global using AutoMapper;
+global using Cloud.DataAccess.GenericRepository.UOM;
+global using Cloud.DataAccess.GenericRepository.UOM.Helper;
+global using EBev.Application;
+global using EBev.Application.Configuration.Options;
+global using EBev.Domain;
+global using EBev.Infrastructure;
+global using EBev.Repository;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.IdentityModel.Tokens;
+global using Microsoft.OpenApi.Models;
+global using System.Net;
+global using System.Reflection;
+global using System.Text;

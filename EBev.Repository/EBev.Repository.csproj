@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cloud.DataAccess.GenericRepository.UOM" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EBev.Application\EBev.Application.csproj" />
+    <ProjectReference Include="..\EBev.Domain\EBev.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
