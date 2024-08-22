@@ -40,7 +40,7 @@
 
         public async Task<IEnumerable<PersonVm>> GetAll()
         {
-            Person response = await _personRepository.Get(x => x.IsActive);
+            IEnumerable<Person> response = await _personRepository.GetAll(x => x.IsActive);
             return _mapper.Map<List<PersonVm>>(response);
         }
     }

@@ -10,6 +10,11 @@
             builder.Property(x => x.Title).HasMaxLength(500).IsRequired();
             builder.Property(x => x.Description).HasMaxLength(1000).IsRequired();
             builder.Property(x => x.Content).HasColumnType("NVARCHAR(MAX)").IsRequired();
+
+            builder.HasOne(x => x.Person)
+                   .WithMany(a => a.Blogs) 
+                   .HasForeignKey(x => x.Id)
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

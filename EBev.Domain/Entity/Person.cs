@@ -6,5 +6,6 @@
         public string ImageUrl { get; set; } = null!;
         public string ShortDescription { get; set; } = null!;
         public string Description { get; set; } = null!;
+        public ICollection<Blog> Blogs { get; set; }
     }
 }

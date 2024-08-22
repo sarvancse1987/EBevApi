@@ -36,7 +36,7 @@
 
         public async Task<IEnumerable<BlogVm>> GetAll()
         {
-            Blog response = await _blogRepository.Get(x => x.IsActive);
+            IEnumerable<Blog> response = await _blogRepository.GetAll(x => x.IsActive);
             return _mapper.Map<List<BlogVm>>(response);
         }
     }

@@ -39,7 +39,7 @@
         public static void Configure(this WebApplication app, WebApplicationBuilder configuration)
         {
             SeedData(app, configuration.Configuration);
-            app
+             app
             .UseRouting()
             .UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader())
             .UseAuthentication()

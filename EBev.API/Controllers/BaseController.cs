@@ -1,6 +1,6 @@
 ﻿namespace EBev.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     [EnableCors("EBevPolicy")]
     //[Authorize(Roles = "EBevUser")]
